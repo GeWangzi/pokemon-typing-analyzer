@@ -112,7 +112,6 @@ def print_top(n, A, type_names, offense=True, reversed=False) -> None:
     """
     vec = calculate_eigenvector(A, offense, type_names)
     
-    # Pair type names with their scores
     ranked = sorted(zip(type_names, vec), key=lambda x: x[1], reverse=not reversed)
 
     print("\nBottom" if reversed else "Top", n, "Offensive" if offense else "Defensive", "Type Combinations:")
@@ -123,7 +122,6 @@ def calculate_overall_scores(A, type_names, offense_weight=0.5, defense_weight=0
     offensive_scores = calculate_eigenvector(A, True, type_names)
     defensive_scores = calculate_eigenvector(A, False, type_names)
     
-    # Combine scores with weights
     overall_scores = {}
     for i, type_combo in enumerate(type_names):
         overall = (offense_weight * offensive_scores[i] + 
